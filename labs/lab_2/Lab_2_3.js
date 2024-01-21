@@ -44,8 +44,29 @@ function suggestWeight(height, bmi) {
     }
 }
 
-rl.question('Please input your height (m): ', (height) => {
-    rl.question('Please input your weight (kg): ', (weight) => {
+function replaceCommaWithDot(value) {
+    return value.replace(',', '.');
+}
+
+
+function validateInput(value) {
+    const parsedValue = parseFloat(replaceCommaWithDot(value));
+    return !isNaN(parsedValue) && parsedValue > 0;
+}
+
+function getUserInput(question, validator, callback) {
+    rl.question(question, input => {
+        if (validator(input)) {
+            callback(parseFloat(replaceCommaWithDot(input)));
+        } else {
+            console.log('Invalid input! Please try again with a valid numeric value!');
+            getUserInput(question, validator, callback);
+        }
+    });
+};
+
+getUserInput('Please input your height in meters (e.g: 1.79): ', validateInput, (height) => {
+    getUserInput('Please input your weight in kilograms (e.g.: 75): ', validateInput, (weight) => {
         const bmi = calcBMI(height, weight);
         const evaluate = evaluateBMI(bmi);
         const suggestion = suggestWeight(height, bmi);

@@ -35,7 +35,6 @@ function merge(leftArr, rightArr) {
     const mergedArr = [];
     let i = 0, j = 0, k = 0;
 
-
     while (i < leftArr.length || j < rightArr.length) {
         if (i < leftArr.length && (j === rightArr.length || leftArr[i] < rightArr[j])) {
             mergedArr[k++] = leftArr[i++];

@@ -8,7 +8,7 @@ const rl = readline.createInterface({
 });
 
 determineOddOrEven = (num) => {
-    return num % 2 === 0 ? "Even" : "Odd";
+    return (num & 1) === 0 ? "Even" : "Odd";
 }
 
 function validateInput(value) {

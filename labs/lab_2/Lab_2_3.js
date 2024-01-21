@@ -48,9 +48,8 @@ function replaceCommaWithDot(value) {
     return value.replace(',', '.');
 }
 
-
 function validateInput(value) {
-    const parsedValue = parseFloat(replaceCommaWithDot(value));
+    const parsedValue = parseFloat(replaceCommaWithDot(value), 10);
     return !isNaN(parsedValue) && parsedValue > 0;
 }
 

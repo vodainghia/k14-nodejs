@@ -11,7 +11,23 @@ determineOddOrEven = (num) => {
     return num % 2 === 0 ? "Even" : "Odd";
 }
 
-rl.question('Please input a number: ', (num) => {
+function validateInput(value) {
+    const parsedValue = parseInt(value, 10);
+    return !isNaN(parsedValue);
+}
+
+function getUserInput(question, validator, callback) {
+    rl.question(question, input => {
+        if (validator(input)) {
+            callback(parseInt(input));
+        } else {
+            console.log('Invalid input! Please try again with a valid integer!');
+            getUserInput(question, validator, callback);
+        }
+    });
+};
+
+getUserInput('Please input a number: ', validateInput, (num) => {
     const result = determineOddOrEven(num);
     console.log(`This is an ${result} number!`);
     rl.close();

@@ -2,6 +2,7 @@
 
 const intArr = [10, 2, 5, 4, 1, 6, 7, 8, 3];
 
+// To compare the below results:
 console.log(intArr.sort((a, b) => a - b));
 
 // Applying Bubble Sort

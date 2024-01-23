@@ -25,23 +25,35 @@ console.log("\nBubble Sort: ", sortedArr);
 
 // Applying Merge Sort
 function mergeSort(arr) {
-    const mid = arr.length / 2;
-    const leftArr = arr.slice(0, mid);
-    const rightArr = arr.slice(mid);
+    if (arr.length <= 1) {
+        return arr;
+    }
+
+    const mid = Math.floor(arr.length / 2);
+    const leftArr = mergeSort(arr.slice(0, mid));
+    const rightArr = mergeSort(arr.slice(mid));
 
     return merge(leftArr, rightArr);
 }
 
 function merge(leftArr, rightArr) {
     const mergedArr = [];
-    let i = 0, j = 0, k = 0;
+    let i = 0, j = 0;
 
-    while (i < leftArr.length || j < rightArr.length) {
-        if (i < leftArr.length && (j === rightArr.length || leftArr[i] < rightArr[j])) {
-            mergedArr[k++] = leftArr[i++];
+    while (i < leftArr.length && j < rightArr.length) {
+        if (leftArr[i] < rightArr[j]) {
+            mergedArr.push(leftArr[i++]);
         } else {
-            mergedArr[k++] = rightArr[j++];
+            mergedArr.push(rightArr[j++]);
         }
+    }
+
+    while (i < leftArr.length) {
+        mergedArr.push(leftArr[i++]);
+    }
+
+    while (j < rightArr.length) {
+        mergedArr.push(rightArr[j++]);
     }
 
     return mergedArr;

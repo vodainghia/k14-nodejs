@@ -61,3 +61,27 @@ function merge(leftArr, rightArr) {
 
 const mergedArr = mergeSort(intArr.slice());
 console.log("\nMerge Sort: ", mergedArr);
+
+// Applying Quick Sort
+function quickSort(arr) {
+    if (arr.length <= 1) {
+        return arr;
+    }
+
+    const pivot = arr[Math.floor(arr.length / 2)];
+    const leftArr = [];
+    const rightArr = [];
+
+    for (const num of arr) {
+        if (num < pivot) {
+            leftArr.push(num);
+        } else if (num > pivot) {
+            rightArr.push(num);
+        }
+    }
+
+    return [...quickSort(leftArr), pivot, ...quickSort(rightArr)];
+}
+
+const quickSortedArr = quickSort(intArr.slice());
+console.log("\nQuick Sort: ", quickSortedArr);

@@ -70,6 +70,7 @@ function quickSort(arr) {
 
     const pivot = arr[Math.floor(arr.length / 2)];
     const leftArr = [];
+    const equalArr = [];
     const rightArr = [];
 
     for (const num of arr) {
@@ -77,10 +78,12 @@ function quickSort(arr) {
             leftArr.push(num);
         } else if (num > pivot) {
             rightArr.push(num);
+        } else {
+            equalArr.push(num);
         }
     }
 
-    return [...quickSort(leftArr), pivot, ...quickSort(rightArr)];
+    return [...quickSort(leftArr), ...equalArr, ...quickSort(rightArr)];
 }
 
 const quickSortedArr = quickSort(intArr.slice());

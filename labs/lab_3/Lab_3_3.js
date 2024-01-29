@@ -20,7 +20,36 @@ function bubbleSort(arr) {
     return arr;
 }
 
-const sortedArr = bubbleSort(intArr.slice());
+// Applying Bubble Sort | Better understanding approach
+function bubbleSort2nd(arr) {
+    let noNeedToSortIndex = arr.length - 1;
+
+    while (noNeedToSortIndex > 0) {
+        for (let i = 0; i < noNeedToSortIndex; i++) {
+            const leftValue = arr[i];
+            const rightValue = arr[i + 1];
+            if (leftValue > rightValue) {
+                arr[i] = rightValue;
+                arr[i + 1] = leftValue;
+
+                // swap without temporary variable | Save memory
+                /**
+                 * a = 10
+                 * b = 2
+                 * a = a + b = 10 + 2 = 12
+                 * b = a - b = 12 - 2 = 10
+                 * a = a - b = 12 - 10 = 2 
+                 */
+            }
+        }
+
+        noNeedToSortIndex--;
+    }
+
+    return arr;
+}
+
+const sortedArr = bubbleSort2nd(intArr.slice());
 console.log("\nBubble Sort: ", sortedArr);
 
 // Applying Merge Sort

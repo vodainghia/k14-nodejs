@@ -1,7 +1,7 @@
 // Merge 2 SORTED integer array into one SORTED array
 
-const intArr1 = [1, 28, 16, 12, 34];
-const intArr2 = [1, 99, 16, 27, 13];
+const intArr1 = [1, 12, 16, 28, 34];
+const intArr2 = [1, 13, 16, 27, 99];
 const mergedArr = [...intArr1, ...intArr2];
 
 // To compare with Quick Sort 
@@ -12,7 +12,6 @@ console.log(mergedArr.sort((a, b) => a - b));
 function merge(intArr1, intArr2) {
     const firstLength = intArr1.length;
     const secondLength = intArr2.length;
-
     let firstPointer = 0;
     let secondPointer = 0;
     let mergeArr = [];

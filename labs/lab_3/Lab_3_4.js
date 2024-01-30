@@ -35,3 +35,29 @@ function quickSort(arr) {
 
 const quickSortedArr = quickSort(mergedArr.slice());
 console.log("\nQuick Sort: ", quickSortedArr);
+
+// New approach
+const firstLength = intArr1.length;
+const secondLength = intArr2.length;
+
+let firstPointer = 0;
+let secondPointer = 0;
+let mergeArr = [];
+
+while (firstPointer < firstLength && secondPointer < secondLength) {
+    if (intArr1[firstPointer] <= intArr2[secondPointer]) {
+        mergeArr.push(intArr1[firstPointer++]);
+    } else {
+        mergeArr.push(intArr2[secondPointer++]);
+    }
+}
+
+while (firstPointer < firstLength) {
+    mergeArr.push(intArr1[firstPointer++]);
+}
+
+while (secondPointer < secondLength) {
+    mergeArr.push(intArr2[secondPointer++]);
+}
+
+console.log("\nNew approach: ", mergeArr);

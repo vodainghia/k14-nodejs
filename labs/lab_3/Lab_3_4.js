@@ -9,55 +9,31 @@ console.log(intArr1.concat(intArr2).sort((a, b) => a - b));
 // OR
 console.log(mergedArr.sort((a, b) => a - b));
 
-// Applying Quick Sort
-function quickSort(arr) {
-    if (arr.length <= 1) {
-        return arr;
-    }
+function merge(intArr1, intArr2) {
+    const firstLength = intArr1.length;
+    const secondLength = intArr2.length;
 
-    const pivot = arr[Math.floor(arr.length / 2)];
-    const leftArr = [];
-    const equalArr = [];
-    const rightArr = [];
+    let firstPointer = 0;
+    let secondPointer = 0;
+    let mergeArr = [];
 
-    for (const num of arr) {
-        if (num < pivot) {
-            leftArr.push(num);
-        } else if (num > pivot) {
-            rightArr.push(num);
+    while (firstPointer < firstLength && secondPointer < secondLength) {
+        if (intArr1[firstPointer] <= intArr2[secondPointer]) {
+            mergeArr.push(intArr1[firstPointer++]);
         } else {
-            equalArr.push(num);
+            mergeArr.push(intArr2[secondPointer++]);
         }
     }
 
-    return [...quickSort(leftArr), ...equalArr, ...quickSort(rightArr)];
-}
-
-const quickSortedArr = quickSort(mergedArr.slice());
-console.log("\nQuick Sort: ", quickSortedArr);
-
-// New approach
-const firstLength = intArr1.length;
-const secondLength = intArr2.length;
-
-let firstPointer = 0;
-let secondPointer = 0;
-let mergeArr = [];
-
-while (firstPointer < firstLength && secondPointer < secondLength) {
-    if (intArr1[firstPointer] <= intArr2[secondPointer]) {
+    while (firstPointer < firstLength) {
         mergeArr.push(intArr1[firstPointer++]);
-    } else {
+    }
+
+    while (secondPointer < secondLength) {
         mergeArr.push(intArr2[secondPointer++]);
     }
+
+    return mergeArr;
 }
 
-while (firstPointer < firstLength) {
-    mergeArr.push(intArr1[firstPointer++]);
-}
-
-while (secondPointer < secondLength) {
-    mergeArr.push(intArr2[secondPointer++]);
-}
-
-console.log("\nNew approach: ", mergeArr);
+console.log("\nNew approach: ", merge(intArr1, intArr2));

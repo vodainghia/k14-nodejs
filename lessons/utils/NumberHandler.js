@@ -4,7 +4,7 @@ const divide = function (a, b) {
 }
 
 // Function declaration
-function isEvenNumber(number) {
+const isEvenNumber = function (number) {
     return number % 2 === 0;
 }
 

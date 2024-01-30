@@ -6,35 +6,46 @@
  */
 const { deepCopyObject } = require('../utils/ObjectHelper');
 
-let ti = {
-    name: 'Ti',
-    grades: [9, 8, 6],
-};
+const calculateAverageScore = function (student) {
+    if (!student || !student.grades || student.grades.length === 0) {
+        return 0;
+    }
 
-let teo = deepCopyObject(ti);
-teo.name = 'Teo';
-teo.grades = [7, 9, 9];
-
-let tun = deepCopyObject(ti);
-tun.name = 'Tun';
-tun.grades = [6, 7, 8];
-
-const students = [ti, teo, tun];
-const bestStudent = findBestStudent(students);
-console.log(bestStudent);
-
-function findBestStudent(students) {
-    return students.reduce((bestStudent, currentStudent) => {
-        const currentAverageScore = calculateAverageScore(currentStudent);
-        const bestAverageScore = calculateAverageScore(bestStudent);
-
-        return currentAverageScore > bestAverageScore ? currentStudent : bestStudent;
-    });
-};
-
-function calculateAverageScore(student) {
     const totalGrade = student.grades.reduce((sum, score) => sum += score, 0);
     const numberOfGrades = student.grades.length;
 
     return Math.floor(totalGrade / numberOfGrades);
 }
+
+const findBestStudents = function (students) {
+    return students.reduce((bestStudents, currentStudent) => {
+        const currentAverageScore = calculateAverageScore(currentStudent);
+
+        if (bestStudents.length === 0 || currentAverageScore > calculateAverageScore(bestStudents[0])) {
+            bestStudents = [currentStudent];
+        } else if (currentAverageScore === calculateAverageScore(bestStudents[0])) {
+            bestStudents.push(currentStudent);
+        }
+
+        return bestStudents;
+    }, []);
+};
+
+const ti = {
+    name: 'Ti',
+    grades: [9, 8, 9],
+};
+
+const teo = deepCopyObject(ti);
+teo.name = 'Teo';
+teo.grades = [7, 9, 9];
+
+const tun = deepCopyObject(ti);
+tun.name = 'Tun';
+tun.grades = [6, 7, 8];
+
+const bi = deepCopyObject(ti);
+bi.name = 'Bi';
+
+const students = [undefined, ti, teo, tun, bi];
+console.log(findBestStudents(students));

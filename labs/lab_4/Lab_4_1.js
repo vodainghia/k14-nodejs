@@ -82,13 +82,16 @@ function updateBalance(bankAccounts) {
     }
 
     while (true) {
-        withdrawMoney = parseInt(readline.questionInt('Please input a valid value to withdraw? (Please input "0" to go back): '), 10);
+        withdrawMoney = readline.question(
+            'Please input a valid value to withdraw, e.g.: 10000. (Please input "0" to go back): ',
+            { validate: input => validateInput(input) }
+        );
 
         if (withdrawMoney === '0') {
             return;
         }
 
-        if (withdrawMoney <= bankAcc.balance) {
+        if (withdrawMoney > 0 && withdrawMoney <= bankAcc.balance) {
             break;
         } else {
             console.log('\nInvalid amount. Please try again!\n');
@@ -111,4 +114,8 @@ function printUserMenu() {
         0. Exit the program
     `
     console.log(menu);
+}
+
+function validateInput(input) {
+    return /^[0-9]+$/.test(input);
 }

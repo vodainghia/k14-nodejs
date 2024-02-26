@@ -14,26 +14,19 @@ const TARGET_URL = 'https://jsonplaceholder.typicode.com';
 const GET_A_POST_SLUG = '/posts/';
 const GET_ALL_POSTS_OF_USER_SLUG = '/posts?userId=';
 
-
-function getUserId() {
-    return new Promise((resolve, reject) => {
-        let userId;
-
-        do {
-            userId = question('Please enter userId (an integer more than 0, e.g.: 1): ');
-        } while (!isValidNumber(userId))
-        resolve(userId);
-    });
+const userInputTypes = {
+    userId: 'userId',
+    postId: 'postId',
 }
 
-function getPostId() {
+function getUserInput(userInputType) {
     return new Promise((resolve, reject) => {
-        let postId;
+        let inputStr;
 
         do {
-            postId = question('Please enter postId (an integer more than 0, e.g.: 1): ');
-        } while (!isValidNumber(postId));
-        resolve(postId);
+            inputStr = question(`Please enter ${userInputType} (an integer more than 0, e.g.: 1): `);
+        } while (!isValidNumber(inputStr))
+        resolve(inputStr);
     });
 }
 
@@ -57,9 +50,9 @@ function isValidNumber(val) {
 }
 
 // Usage
-getUserId()
+getUserInput(userInputTypes.userId)
     .then((userId) => {
-        return getPostId()
+        return getUserInput(userInputTypes.postId)
             .then((postId) => {
                 const getAPostUrl = TARGET_URL + GET_A_POST_SLUG + postId;
                 return sendRequest(getAPostUrl)

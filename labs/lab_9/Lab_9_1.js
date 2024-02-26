@@ -15,8 +15,8 @@ const GET_A_POST_SLUG = '/posts/';
 const GET_ALL_POSTS_OF_USER_SLUG = '/posts?userId=';
 
 const userInputTypes = {
-    userId: 'userId',
-    postId: 'postId',
+    USER_ID: 'userId',
+    POST_ID: 'postId',
 }
 
 function getUserInput(userInputType) {
@@ -50,9 +50,9 @@ function isValidNumber(val) {
 }
 
 // Usage
-getUserInput(userInputTypes.userId)
+getUserInput(userInputTypes.USER_ID)
     .then((userId) => {
-        return getUserInput(userInputTypes.postId)
+        return getUserInput(userInputTypes.POST_ID)
             .then((postId) => {
                 const getAPostUrl = TARGET_URL + GET_A_POST_SLUG + postId;
                 return sendRequest(getAPostUrl)

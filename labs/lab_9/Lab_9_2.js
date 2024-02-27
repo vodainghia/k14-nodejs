@@ -26,16 +26,16 @@ function getPostId() {
 async function sendRequest(url) {
     console.log('\nSending request...\n');
 
-    return await fetch(url)
-        .then(res => {
-            if (!res.ok) {
-                throw new Error('Fetching falied');
-            } else {
-                return res.json();
-            }
-        }).catch(err => {
-            console.log(err.message);
-        });
+    const res = await fetch(url);
+    try {
+        if (!res.ok) {
+            throw new Error('Fetching falied');
+        } else {
+            return res.json();
+        }
+    } catch (error) {
+        console.log(error.message);
+    }
 }
 
 function isValidNumber(val) {

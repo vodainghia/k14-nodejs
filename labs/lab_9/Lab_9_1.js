@@ -51,9 +51,9 @@ function isValidNumber(val) {
 
 // Usage
 getUserInput(userInputTypes.USER_ID)
-    .then((userId) => {
+    .then(userId => {
         return getUserInput(userInputTypes.POST_ID)
-            .then((postId) => {
+            .then(postId => {
                 const getAPostUrl = TARGET_URL + GET_A_POST_SLUG + postId;
                 return sendRequest(getAPostUrl)
                     .then(postData => {
@@ -67,14 +67,14 @@ getUserInput(userInputTypes.USER_ID)
                     });
             });
     })
-    .then((userId) => {
+    .then(userId => {
         const getAllPostOfUserUrl = TARGET_URL + GET_ALL_POSTS_OF_USER_SLUG + userId;
-        return sendRequest(getAllPostOfUserUrl)
-            .then(allPosts => {
-                if (allPosts) {
-                    console.log('All posts of the user: \n', allPosts);
-                } else {
-                    console.log('No post returned');
-                }
-            });
+        return sendRequest(getAllPostOfUserUrl);
+    })
+    .then(allPosts => {
+        if (allPosts) {
+            console.log('All posts of the user: \n', allPosts);
+        } else {
+            console.log('No post returned');
+        }
     });

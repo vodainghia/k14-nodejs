@@ -26,8 +26,8 @@ function getPostId() {
 async function sendRequest(url) {
     console.log('\nSending request...\n');
 
-    const res = await fetch(url);
     try {
+        const res = await fetch(url);
         if (!res.ok) {
             throw new Error('Fetching falied');
         } else {

@@ -24,7 +24,7 @@ class Post {
     }
 
     get title() {
-        return this._title = title;
+        return this._title;
     }
 
     set title(title) {

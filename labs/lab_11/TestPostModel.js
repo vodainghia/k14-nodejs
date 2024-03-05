@@ -18,7 +18,7 @@ async function lab11() {
     if (post) {
         console.log(post.body);
     } else {
-        console.log(`The post ID ${postId} is not existing for the user ID ${userId}`);
+        console.log(`The post ID ${postId} is not existing for the user ID ${userId}\n`);
     }
 
     if (allPost.length !== 0) {
@@ -28,7 +28,5 @@ async function lab11() {
     } else {
         console.log([]);
     }
-
-
 
 }

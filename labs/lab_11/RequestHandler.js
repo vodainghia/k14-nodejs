@@ -27,23 +27,20 @@ class RequestHandler {
         return allMappedPosts;
     }
 
-    printPost(post) {
-        return `
-        {
-            "userId": "${post.userId}",
-            "id": "${post.id}",
-            "title": "${post.title}",
-            "body": "${post.body}"
-        },`
-    }
-
     async _getAllPost(userId, url) {
         const posts = await sendRequest(url);
+
         return posts.filter(post => {
             return post.userId === userId;
         });
     }
-    
+
+    printPost(post) {
+        const { userId, postId, title, body } = post;
+
+        return `{\n\t"userId": "${userId}",\n\t"id": "${postId}",\n\t"title": "${title}",\n\t"body": "${body}"\n},\n`
+    }
+
 }
 
 module.exports = RequestHandler;

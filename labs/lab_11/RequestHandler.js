@@ -21,7 +21,11 @@ class RequestHandler {
         let allMappedPosts = [];
 
         allPosts.forEach(post => {
-            allMappedPosts.push(new Post(post.userId, post.id, post.title, post.body));
+            const isValidPost = post.hasOwnProperty('userId') && post.hasOwnProperty('id') && post.hasOwnProperty('title') && post.hasOwnProperty('body');
+
+            if (isValidPost) {
+                allMappedPosts.push(new Post(post.userId, post.id, post.title, post.body));
+            }
         });
 
         return allMappedPosts;

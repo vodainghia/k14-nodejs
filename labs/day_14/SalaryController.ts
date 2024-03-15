@@ -1,31 +1,23 @@
 import Employee from "./Employee";
 
 export function calcTotalSalary(employeeList: Employee[]): number {
-    return employeeList.reduce((sum, employee) => sum += employee.salary, 0);
+    return employeeList.reduce((sum, employee) => sum += employee.getSalary(), 0);
 }
 
 export function getListHighestSalary(employeeList: Employee[]): Employee[] {
-    const maxSalary = employeeList.reduce((max, employee) => Math.max(max, employee.salary), employeeList[0].salary);
+    const maxSalary = employeeList.reduce((max, employee) => Math.max(max, employee.getSalary()), employeeList[0].getSalary());
 
-    return employeeList.filter(employee => employee.salary === maxSalary);
+    return employeeList.filter(employee => employee.getSalary() === maxSalary);
 }
 
 export function getListLowestSalary(employeeList: Employee[]): Employee[] {
-    const minSalary = employeeList.reduce((min, employee) => Math.min(min, employee.salary), employeeList[0].salary);
+    const minSalary = employeeList.reduce((min, employee) => Math.min(min, employee.getSalary()), employeeList[0].getSalary());
 
-    return employeeList.filter(employee => employee.salary === minSalary);
+    return employeeList.filter(employee => employee.getSalary() === minSalary);
 }
 
 export function ascendingSortEmployeeByName(employeeList: Employee[]): Employee[] {
-    return employeeList.sort((emp1, emp2) => {
-        if (emp1.name > emp2.name) {
-            return 1;
-        } else if (emp1.name === emp2.name) {
-            return 0;
-        } else {
-            return -1;
-        }
-    });
+    return employeeList.sort(_compareText);
 }
 
 export function descendingSortEmployeeByName(employeeList: Employee[]): Employee[] {
@@ -33,7 +25,7 @@ export function descendingSortEmployeeByName(employeeList: Employee[]): Employee
 }
 
 export function ascendingSortEmployeeBySalary(employeeList: Employee[]): Employee[] {
-    return employeeList.sort((emp1, emp2) => (emp1.salary - emp2.salary));
+    return employeeList.sort((emp1, emp2) => (emp1.getSalary() - emp2.getSalary()));
 }
 
 export function descendingSortEmployeeBySalary(employeeList: Employee[]): Employee[] {
@@ -41,5 +33,19 @@ export function descendingSortEmployeeBySalary(employeeList: Employee[]): Employ
 }
 
 export function printEmployeeList(employeeList: Employee[]): void {
-    employeeList.forEach(emp => console.log(`The employee with name is ${emp.name} and has salary is ${emp.salary}.`));
+    employeeList.forEach(emp => printEmployee(emp));
 }
+
+export function printEmployee(employee: Employee): void {
+    console.log(`The employee with name is ${employee.getName()} and has salary is ${employee.getSalary()}.`);
+}
+
+function _compareText(emp1: Employee, emp2: Employee) {
+    if (emp1.getName() > emp2.getName()) {
+        return 1;
+    } else if (emp1.getName() === emp2.getName()) {
+        return 0;
+    } else {
+        return -1;
+    }
+};

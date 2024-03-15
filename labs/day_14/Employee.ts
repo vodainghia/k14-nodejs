@@ -1,27 +1,27 @@
 export default class Employee {
 
-    private _name: string;
-    private _salary: number;
+    private name: string;
+    private salary: number;
 
     constructor(name: string, salary: number) {
-        this._name = name;
-        this._salary = salary;
+        this.name = name;
+        this.salary = salary;
     }
 
-    get salary(): number {
-        return this._salary;
+    getSalary(): number {
+        return this.salary;
     }
 
-    set salary(salary: number) {
-        this._salary = salary;
+    setSalary(salary: number) {
+        this.salary = salary;
     }
 
-    get name(): string {
-        return this._name;
+    getName(): string {
+        return this.name;
     }
 
-    set name(name: string) {
-        this._name = name;
+    setName(name: string) {
+        this.name = name;
     }
 
 }

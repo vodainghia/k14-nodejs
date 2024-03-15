@@ -4,16 +4,25 @@ export function calcTotalSalary(employeeList: Employee[]): number {
     return employeeList.reduce((sum, employee) => sum += employee.getSalary(), 0);
 }
 
-export function getListHighestSalary(employeeList: Employee[]): Employee[] {
-    const maxSalary = employeeList.reduce((max, employee) => Math.max(max, employee.getSalary()), employeeList[0].getSalary());
+// Function Type Expressions: https://www.typescriptlang.org/docs/handbook/2/functions.html#function-type-expressions
+type TwoNumberWithReturnNumber = (a: number, b: number) => number;
 
-    return employeeList.filter(employee => employee.getSalary() === maxSalary);
+function _findEmployeesWithEdgeSalary(employeeList: Employee[], comparator: TwoNumberWithReturnNumber): Employee[] {
+    if (employeeList.length === 0) {
+        return [];
+    }
+
+    const edgeSalary = employeeList.reduce((edge, employee) => comparator(edge, employee.getSalary()), employeeList[0].getSalary());
+
+    return employeeList.filter(employee => employee.getSalary() === edgeSalary);
+}
+
+export function getListHighestSalary(employeeList: Employee[]): Employee[] {
+    return _findEmployeesWithEdgeSalary(employeeList, Math.max);
 }
 
 export function getListLowestSalary(employeeList: Employee[]): Employee[] {
-    const minSalary = employeeList.reduce((min, employee) => Math.min(min, employee.getSalary()), employeeList[0].getSalary());
-
-    return employeeList.filter(employee => employee.getSalary() === minSalary);
+    return _findEmployeesWithEdgeSalary(employeeList, Math.min);
 }
 
 export function ascendingSortEmployeeByName(employeeList: Employee[]): Employee[] {
@@ -41,11 +50,5 @@ export function printEmployee(employee: Employee): void {
 }
 
 function _compareText(emp1: Employee, emp2: Employee) {
-    if (emp1.getName() > emp2.getName()) {
-        return 1;
-    } else if (emp1.getName() === emp2.getName()) {
-        return 0;
-    } else {
-        return -1;
-    }
+    return emp1.getName() > emp2.getName() ? 1 : emp1.getName() === emp2.getName() ? 0 : -1;
 };

@@ -1,4 +1,5 @@
 import ContractEmployee from './ContractEmployee';
+import Employee from './Employee';
 import FulltimeEmployee from './FulltimeEmployee';
 import {
     calcTotalSalary,
@@ -16,8 +17,7 @@ const emp2 = new FulltimeEmployee('BB');
 const emp3 = new FulltimeEmployee('CC');
 const emp4 = new ContractEmployee('DD');
 const emp5 = new ContractEmployee('EE');
-//const employeeList = [emp3, emp1, emp5, emp2, emp4];
-const employeeList = [];
+const employeeList: Employee[] = [emp3, emp1, emp5, emp2, emp4];
 
 const totalSalary = calcTotalSalary(employeeList);
 console.log('\tTotal salary of all employees is: ', totalSalary);

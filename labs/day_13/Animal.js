@@ -1,7 +1,7 @@
 class Animal {
 
     constructor(maxSpeed) {
-        this.speed = Math.min(maxSpeed, this._speed());
+        this.speed = this._speed(maxSpeed);
     }
 
     getSpeed() {
@@ -12,8 +12,8 @@ class Animal {
         return `Winner is ${this.constructor.name}, with speed ${this.getSpeed()} km/h.`;
     }
 
-    _speed() {
-        return Math.floor(Math.random() * 100) + 1;
+    _speed(maxSpeed) {
+        return Math.min(maxSpeed, Math.floor(Math.random() * 100) + 1);
     }
 
 }

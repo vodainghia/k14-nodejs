@@ -44,13 +44,4 @@ export default class Book {
         this.year = year;
     }
 
-    toString(): string {
-        return "Book{" +
-            "ISBN='" + this.ISBN + '\'' +
-            ", title='" + this.title + '\'' +
-            ", author='" + this.author + '\'' +
-            ", year='" + this.year + '\'' +
-            '}';
-    }
-
 }

@@ -1,0 +1,10 @@
+A123;Bible;Various Authors;-1600
+C01;Dau;Viet Thu;2022
+V2221;Vong New Edition;Duong Kieu;2024
+ANB12;Harry Potter;J.K. Rowling;1990
+1;Dummy New Edition;Somebody;03/2024
+C011;Kinh Van Hoa;Nguyen Nhat Anh;1992
+H81;Atomic habits;A Person;2011
+101;Clean Code;Robert Cecil Martin;2003
+29;New test title;New test Author;2001
+28;28th book;Noname;2018

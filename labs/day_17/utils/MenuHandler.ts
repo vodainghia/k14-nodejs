@@ -1,6 +1,7 @@
 import readline from 'readline-sync';
 
 export default class MenuHandler {
+
     getUserSelection(): number {
         try {
             return readline.questionInt('Please input your selection: ');

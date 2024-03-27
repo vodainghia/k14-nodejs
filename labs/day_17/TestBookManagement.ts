@@ -1,4 +1,4 @@
-import BookManagement from './BookManagement';
+import BookManagement from './services/BookManagement';
 import path from 'path';
 
 const relativePath = '/booksDB.txt';

@@ -1,7 +1,8 @@
 import fs from 'fs';
-import Book from './Book';
+import Book from '../models/Book';
 
 export default class BookFileManager {
+
     private readonly filePath: string;
 
     constructor(filePath: string) {

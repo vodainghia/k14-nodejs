@@ -1,10 +1,11 @@
-import BookFileManager from './BookFileManager';
-import MenuHandler from './MenuHandler';
-import Book from './Book';
+import BookFileManager from '../utils/BookFileManager';
+import MenuHandler from '../utils/MenuHandler';
+import Book from '../models/Book';
 import readline from 'readline-sync';
-import { UserActions } from './UserActions';
+import { UserActions } from '../constants/UserActions';
 
 export default class BookManagement {
+
     private bookFileManager: BookFileManager;
     private menuHandler: MenuHandler;
 

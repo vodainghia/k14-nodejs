@@ -6,7 +6,7 @@ export default class MenuHandler {
         try {
             return readline.questionInt('Please input your selection: ');
         } catch (error) {
-            console.log('\t\nInvalid selection. Please enter a valid integer!\n');
+            console.log('\n\tInvalid selection. Please enter a valid integer!\n');
             return this.getUserSelection();
         }
     }

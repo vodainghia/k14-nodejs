@@ -8,3 +8,5 @@ H81;Atomic habits;A Person;2011
 101;Clean Code;Robert Cecil Martin;2003
 29;New test title;New test Author;2001
 28;28th book;Noname;2018
+102;Design Pattern for Dummies;Nghia Vo;2026
+314;Math;Teachers;1900

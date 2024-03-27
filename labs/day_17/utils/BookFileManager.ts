@@ -10,7 +10,7 @@ export default class BookFileManager {
     }
 
     readBooksListFromFile(): Book[] {
-        console.log(`\t\n[INFO] Reading file from ${this.filePath}\n`);
+        console.log(`\n\t[INFO] Reading file from ${this.filePath}\n`);
         const bookList: Book[] = [];
 
         try {
@@ -23,7 +23,7 @@ export default class BookFileManager {
                 bookList.push(book);
             });
         } catch (error) {
-            console.log(`\t\n[ERR] Error reading file: ${(error as Error).message}\n`);
+            console.log(`\n\t[ERR] Error reading file: ${(error as Error).message}\n`);
         }
 
         return bookList;
@@ -34,7 +34,7 @@ export default class BookFileManager {
             const dataLines = bookList.map(book => `${book.getISBN()};${book.getTitle()};${book.getAuthor()};${book.getYear()}`);
             fs.writeFileSync(this.filePath, dataLines.join('\n'));
         } catch (error) {
-            console.log(`\t\n[ERR] Error writing file: ${(error as Error).message}\n`);
+            console.log(`\n\t[ERR] Error writing file: ${(error as Error).message}\n`);
         }
     }
 

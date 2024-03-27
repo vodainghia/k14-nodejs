@@ -19,7 +19,7 @@ export default class BookManagement {
 
         while (isContinue) {
             this.menuHandler.printUserMenu();
-            let userSelection: number = this.menuHandler.getUserSelection();
+            const userSelection: number = this.menuHandler.getUserSelection();
 
             switch (userSelection) {
                 case 1:
@@ -38,7 +38,7 @@ export default class BookManagement {
                     this.printBooksList();
                     break;
                 case 0:
-                    console.log('\t\nThank for using. See you again.\n');
+                    console.log('\n\tThank for using. See you again.\n');
                     isContinue = false;
                     break;
             }
@@ -52,7 +52,7 @@ export default class BookManagement {
 
         currentBooksList.push(newBook);
         this.bookFileManager.saveBooksListToFile(currentBooksList);
-        console.log('\t\nThe book is saved into DB with info: ' + newBook);
+        console.log('\n\tThe book is saved into DB with info: ', newBook);
     }
 
     printFoundBook(): void {
@@ -60,7 +60,7 @@ export default class BookManagement {
         const book: Book | null = this.findBook(findingBookISBN);
 
         if (book === null) {
-            console.log(`\t\nThe book with ISBN ${findingBookISBN} is not found\n`);
+            console.log(`\n\tThe book with ISBN ${findingBookISBN} is not found\n`);
         } else {
             console.log(book);
         }
@@ -71,13 +71,13 @@ export default class BookManagement {
         const targetBookISBN: string = readline.question('Please input target ISBN: ');
 
         if (this.findBook(targetBookISBN) === null) {
-            console.log(`\t\nThe book with ISBN ${targetBookISBN} is not found\n`);
+            console.log(`\n\tThe book with ISBN ${targetBookISBN} is not found\n`);
         } else {
             const updatingBook: Book = this.inputBookInfo(UserActions.Update);
 
             currentBooksList = currentBooksList.map(book => book.getISBN() === targetBookISBN ? updatingBook : book);
             this.bookFileManager.saveBooksListToFile(currentBooksList);
-            console.log('\t\nThe book is now updated with new content: ' + updatingBook);
+            console.log('\n\tThe book is now updated with new content: ', updatingBook);
         }
     }
 
@@ -89,9 +89,9 @@ export default class BookManagement {
         if (isBookFound) {
             const updatedBooksList: Book[] = currentBooksList.filter(book => book.getISBN() !== targetBookISBN);
             this.bookFileManager.saveBooksListToFile(updatedBooksList);
-            console.log(`\t\nThe book with ISBN '${targetBookISBN}' is deleted from DB.\n`);
+            console.log(`\n\tThe book with ISBN '${targetBookISBN}' is deleted from DB.\n`);
         } else {
-            console.log(`\t\nThe book with ISBN ${targetBookISBN} is not found.\n`);
+            console.log(`\n\tThe book with ISBN ${targetBookISBN} is not found.\n`);
         }
     }
 
@@ -113,7 +113,7 @@ export default class BookManagement {
         let bookISBN: string = readline.question(action === UserActions.Add ? 'Please input ISBN: ' : 'Please input new ISBN: ');
 
         while (action === UserActions.Add && this.findBook(bookISBN) !== null) {
-            console.log(`\t\nThe ISBN ${bookISBN} is existing. Please use the new one!\n`);
+            console.log(`\n\tThe ISBN ${bookISBN} is existing. Please use the new one!\n`);
             bookISBN = readline.question('Please input ISBN: ');
         }
 

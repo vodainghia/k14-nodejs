@@ -46,7 +46,7 @@ export default class BookManagement {
 
     }
 
-    addBook(): void {
+    private addBook(): void {
         const newBook: Book = this.inputBookInfo(UserActions.Add);
         const currentBooksList: Book[] = this.bookFileManager.readBooksListFromFile();
 
@@ -55,7 +55,7 @@ export default class BookManagement {
         console.log('\n\tThe book is saved into DB with info: ', newBook);
     }
 
-    printFoundBook(): void {
+    private printFoundBook(): void {
         const findingBookISBN: string = readline.question('Please input ISBN: ');
         const book: Book | null = this.findBook(findingBookISBN);
 
@@ -66,7 +66,7 @@ export default class BookManagement {
         }
     }
 
-    updateBook(): void {
+    private updateBook(): void {
         let currentBooksList: Book[] = this.bookFileManager.readBooksListFromFile();
         const targetBookISBN: string = readline.question('Please input target ISBN: ');
 
@@ -81,7 +81,7 @@ export default class BookManagement {
         }
     }
 
-    deleteBook(): void {
+    private deleteBook(): void {
         const currentBooksList: Book[] = this.bookFileManager.readBooksListFromFile();
         const targetBookISBN: string = readline.question('Please input ISBN: ');
         const isBookFound: boolean = currentBooksList.some(book => book.getISBN() === targetBookISBN);
@@ -95,7 +95,7 @@ export default class BookManagement {
         }
     }
 
-    printBooksList(): void {
+    private printBooksList(): void {
         const bookList: Book[] = this.bookFileManager.readBooksListFromFile();
         let bookTemplate: string = '';
 
@@ -109,7 +109,7 @@ export default class BookManagement {
         console.log(bookTemplate);
     }
 
-    inputBookInfo(action: UserActions): Book {
+    private inputBookInfo(action: UserActions): Book {
         let bookISBN: string = readline.question(action === UserActions.Add ? 'Please input ISBN: ' : 'Please input new ISBN: ');
 
         while (action === UserActions.Add && this.findBook(bookISBN) !== null) {
@@ -124,7 +124,7 @@ export default class BookManagement {
         return new Book(bookISBN, bookTitle, bookAuthor, bookYear);
     }
 
-    findBook(findingBookISBN: string): Book | null {
+    private findBook(findingBookISBN: string): Book | null {
         const currentBooksList: Book[] = this.bookFileManager.readBooksListFromFile();
         const foundBook: Book | undefined = currentBooksList.find(book => book.getISBN() === findingBookISBN);
 
